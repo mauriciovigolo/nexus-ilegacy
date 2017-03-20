@@ -1,0 +1,39 @@
+{
+  "name": "nexus-ilegacy",
+  "version": "1.0.0",
+  "description": "Tool to import your legacy libraries to Nexus OSS.",
+  "main": "index.js",
+  "scripts": {
+    "lint": "node_modules/.bin/jshint **.js",
+    "test": "",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://github.com/mauriciovigolo/nexus-ilegacy.git"
+  },
+  "keywords": [
+    "Nexus",
+    "OSS",
+    "Maven",
+    "NPM",
+    "Import",
+    "libraries",
+    "m2",
+    "import",
+    "js",
+    "import"
+  ],
+  "author": "Mauricio Vigolo <mauriciogv@sanepar.com.br>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/mauriciovigolo/nexus-ilegacy/issues"
+  },
+  "homepage": "https://github.com/mauriciovigolo/nexus-ilegacy#readme",
+  "dependencies": {
+    "file-matcher": "^1.1.0"
+  },
+  "devDependencies": {
+    "jshint": "^2.9.4"
+  }
+}
