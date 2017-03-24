@@ -1,8 +1,14 @@
 #!/usr/bin/env node
 
+/*
 var MvnProcessor = require('../lib/processors/mvn.processor');
 
 var processor = new MvnProcessor();
 processor.isConfigured();
+*/
+
+var Executable = require('../lib/executable');
+var exec = new Executable();
+exec.help({print: console.log});
 
 console.log(process.argv.slice(2));
