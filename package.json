@@ -1,6 +1,6 @@
 {
   "name": "nexus-ilegacy",
-  "version": "1.0.0",
+  "version": "0.1.0-beta.0",
   "description": "Tool to import your legacy libraries to Nexus OSS.",
   "main": "lib/nilegacy.js",
   "bin": "bin/nilegacy.js",
@@ -12,6 +12,9 @@
   "repository": {
     "type": "git",
     "url": "git+ssh://github.com/mauriciovigolo/nexus-ilegacy.git"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
   },
   "keywords": [
     "Nexus",
