@@ -3,7 +3,9 @@
   "version": "0.1.0-beta.1",
   "description": "Tool to import your legacy libraries to Nexus OSS.",
   "main": "lib/nilegacy.js",
-  "bin": "bin/nilegacy.js",
+  "bin": {
+    "nilegacy": "bin/nilegacy.js"
+  },
   "scripts": {
     "lint": "node_modules/.bin/jshint **.js",
     "test": "",
