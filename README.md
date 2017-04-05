@@ -23,7 +23,7 @@ This beta release works with maven, however soon the npm and nuget will also be 
 
 
 ## Prerequisites
-The nexus-ilegacy CLI require:
+The nexus-ilegacy CLI requires:
 * Node 6.9.0 or higher
 * NPM 3 or higher
 * Maven 3.3 or higher - to import Maven artifacts
@@ -33,7 +33,7 @@ The nexus-ilegacy CLI require:
 
 ## Installing
 
-To install the CLI command:
+To install the CLI:
 ```bash
 npm install i -g nexus-ilegacy
 ```
@@ -88,14 +88,17 @@ In the repo argument you should use one of following options:
 
 
 2. Options
+
 **General options** (valid for maven, nuget and npm):
+
     * --repoUrl - repository URL
     * --version - show the current version
     * --help - display help
     * --output -change the output log file. Default is ./nilegacy-YYYYMMDDHHmmss.log
 
 **Options available only for maven**:
-    * --repositoryId -repository ID as configured in Maven's settings.xml
+
+    * --repositoryId - repository ID as configured in Maven's settings.xml
     * --generatePom - if specified will force the pom generation, otherwise, will use the same name of the jar file for the pom
     * --groupId - group ID must be informed if generatePom is true
 
@@ -106,7 +109,7 @@ The directory path to search for files. The followings extensions will search fo
 * npm: "package.json"
 The CLI will recursively look for files.
 
-**IMPORTANT** The user MUST has access to the directory otherwise it will not work.
+**IMPORTANT** The user MUST be granted to access the directory, otherwise it will not work.
 
 
 ### Importing Maven Artifacts
