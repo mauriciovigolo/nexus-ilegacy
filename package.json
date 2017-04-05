@@ -1,6 +1,6 @@
 {
   "name": "nexus-ilegacy",
-  "version": "0.1.0-beta.1",
+  "version": "0.1.0-beta.2",
   "description": "Tool to import your legacy libraries to Nexus OSS.",
   "main": "lib/nilegacy.js",
   "bin": {
