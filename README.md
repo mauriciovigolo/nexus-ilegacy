@@ -80,29 +80,37 @@ The command syntax is:
 nilegacy [repo] [options] directory_to_search_recursively
 ```
 
-1. Repo
+**Repo**
+---
+
 In the repo argument you should use one of following options:
 * maven
 * npm
 * nuget
 
 
-2. Options
+**Options**
+---
 
 **General options** (valid for maven, nuget and npm):
-
-    * --repoUrl - repository URL
-    * --version - show the current version
-    * --help - display help
-    * --output -change the output log file. Default is ./nilegacy-YYYYMMDDHHmmss.log
+```bash
+--repoUrl - repository URL
+--version - show the current version
+--help - display help
+--output -change the output log file. Default is ./nilegacy-YYYYMMDDHHmmss.log
+```
 
 **Options available only for maven**:
 
-    * --repositoryId - repository ID as configured in Maven's settings.xml
-    * --generatePom - if specified will force the pom generation, otherwise, will use the same name of the jar file for the pom
-    * --groupId - group ID must be informed if generatePom is true
+```bash
+--repositoryId - repository ID as configured in Maven's settings.xml
+--generatePom - if specified will force the pom generation, otherwise, will use the same name of the jar file for the pom
+--groupId - group ID must be informed if generatePom is true
+```
 
-3. Directory
+
+**Directory**
+---
 The directory path to search for files. The followings extensions will search for:
 * maven: ".jar"
 * nuget: ".nupkg"
