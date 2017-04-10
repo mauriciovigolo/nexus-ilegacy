@@ -21,14 +21,12 @@ During the execution is possible to check the total of import success and errors
 This beta release works with maven, however soon the npm and nuget will also be available.
 
 
-
 ## Prerequisites
 The nexus-ilegacy CLI requires:
 * Node 6.9.0 or higher
 * NPM 3 or higher
 * Maven 3.3 or higher - to import Maven artifacts
 * NuGet 3 or higher - to import .NET artifacts
-
 
 
 ## Installing
@@ -68,7 +66,6 @@ This server id the "--repositoryId" argument, so the mvn command will get this u
 Never expose your password in plain text. For maven password encryption , follow [this guide](https://maven.apache.org/guides/mini/guide-encryption.html).
 
 
-
 ## Usage
 
 ```bash
@@ -80,8 +77,7 @@ The command syntax is:
 nilegacy [repo] [options] directory_to_search_recursively
 ```
 
-**Repo**
----
+#### Repo
 
 In the repo argument you should use one of following options:
 * maven
@@ -89,10 +85,9 @@ In the repo argument you should use one of following options:
 * nuget
 
 
-**Options**
----
+#### Options
 
-**General options** (valid for maven, nuget and npm):
+General options (valid for maven, nuget and npm):
 ```bash
 --repoUrl - repository URL
 --version - show the current version
@@ -100,42 +95,47 @@ In the repo argument you should use one of following options:
 --output -change the output log file. Default is ./nilegacy-YYYYMMDDHHmmss.log
 ```
 
-**Options available only for maven**:
+Options available only for maven:
 
 ```bash
---repositoryId - repository ID as configured in Maven's settings.xml
+--repositoryId - repository ID as configured in Maven settings.xml
 --generatePom - if specified will force the pom generation, otherwise, will use the same name of the jar file for the pom
 --groupId - group ID must be informed if generatePom is true
 ```
 
+#### Directory
 
-**Directory**
----
 The directory path to search for files. The followings extensions will search for:
 * maven: ".jar"
 * nuget: ".nupkg"
 * npm: "package.json"
 The CLI will recursively look for files.
 
-**IMPORTANT** The user MUST be granted to access the directory, otherwise it will not work.
+**IMPORTANT**: Remember to check if the user have permission to access the directory.
 
 
-### Importing Maven Artifacts
+#### Importing Maven Artifacts
+The CLI will look for files with the .jar extension and *.sources.jar and *.javadoc.jar are also considered. Behind the scenes it will execute the maven deploy plugin.
+CLI example to upload maven artifacts to Nexus OSS:
+
+```bash
+nilegacy maven --repoUrl http://localhost:8081/repository/maven-hosted --repositoryId repo-maven /home/user/artifactory_
+maven_backup
+```
+
+**IMPORTANT**: Note the --repositoryId. This id must exists in the servers config at the settings.xml.
+
+
+#### Importing NuGet Artifacts
 TODO: To be done
 
 
-### Importing NuGet Artifacts
+#### Importing NPM Artifacts
 TODO: To be done
-
-
-### Importing NPM Artifacts
-TODO: To be done
-
 
 
 ## History
 For the list of all changes see the [history log](CHANGELOG.md).
-
 
 
 ## License
