@@ -133,6 +133,9 @@ TODO: To be done
 #### Importing NPM Artifacts
 TODO: To be done
 
+LIMITATIONS:
+NPM Issue (#10117)[https://github.com/npm/npm/issues/10117]
+
 
 ## History
 For the list of all changes see the [history log](CHANGELOG.md).
