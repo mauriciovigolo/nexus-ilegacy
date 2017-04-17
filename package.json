@@ -8,7 +8,7 @@
   },
   "scripts": {
     "lint": "node_modules/.bin/jshint **.js",
-    "test": "",
+    "test": "node_modules/.bin/mocha",
     "start": "node index.js"
   },
   "repository": {
@@ -43,6 +43,7 @@
     "progress": "^1.1.8"
   },
   "devDependencies": {
-    "jshint": "^2.9.4"
+    "jshint": "^2.9.4",
+    "mocha": "^3.2.0"
   }
 }
