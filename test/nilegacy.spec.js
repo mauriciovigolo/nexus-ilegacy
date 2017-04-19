@@ -53,5 +53,45 @@ describe('nilegacy', function() {
 
       assert(log.indexOf('Nexus Legacy Importer - Examples') > -1);
     });
+
+    it('Should validate repo types, accepting only maven, node and nuget', function() {
+      let result = spawn('node', ['./bin/nilegacy.js', 'non-available-repo']);
+
+      let log = (result.stdout || result.stderr || '').toString();
+
+      assert(log.indexOf('nilegacy: Incorrect repository option') > -1);
+    });
+
+    it('Cannot accept --examples arg after another arg', function() {
+      let result = spawn('node', ['./bin/nilegacy.js', 'maven', '--examples']);
+
+      let log = (result.stdout || result.stderr || '').toString();
+
+      assert(log.indexOf('Invalid syntax') > -1);
+    });
+
+    it('Cannot accept --version arg after another arg', function() {
+      let result = spawn('node', ['./bin/nilegacy.js', 'maven', '--version']);
+
+      let log = (result.stdout || result.stderr || '').toString();
+
+      assert(log.indexOf('Invalid syntax') > -1);
+    });
+
+    it('Cannot accept --h arg after another arg', function() {
+      let result = spawn('node', ['./bin/nilegacy.js', 'maven', '-h']);
+
+      let log = (result.stdout || result.stderr || '').toString();
+
+      assert(log.indexOf('Invalid syntax') > -1);
+    });
+
+    it('Cannot accept --help arg after another arg', function() {
+      let result = spawn('node', ['./bin/nilegacy.js', 'maven', '--help']);
+
+      let log = (result.stdout || result.stderr || '').toString();
+
+      assert(log.indexOf('Invalid syntax') > -1);
+    });
   });
 });
