@@ -4,7 +4,7 @@ const assert = require('assert');
 const spawn = require('child_process').spawnSync;
 
 describe('nilegacy', function () {
-  describe('helping and info args', function () {
+  describe('Args Initialization', function () {
     it('No args: Should show usage options', function () {
       let result = spawn('node', ['./bin/nilegacy.js']);
 
@@ -20,7 +20,6 @@ describe('nilegacy', function () {
 
       assert(log.indexOf('USAGE:') > -1);
     });
-
 
     it('-h arg: Should show help', function () {
       let result = spawn('node', ['./bin/nilegacy.js', '-h']);
@@ -93,9 +92,7 @@ describe('nilegacy', function () {
 
       assert(log.indexOf('nilegacy: Incorrect repository option') > -1);
     });
-  });
 
-  describe('Generic Validation - for all repos!', function () {
     it('Should not run if there is no repoUrl', function () {
       let result = spawn('node', ['./bin/nilegacy.js', 'maven']);
 
@@ -111,16 +108,42 @@ describe('nilegacy', function () {
 
       assert(log.indexOf('Repository directory') > -1);
     });
-  });
 
-  describe('Maven repo import validation - for all repos!', function () {
-    it('Should throws error if it doesn\'t contain the repositoryId', function () {
+    it('For Maven: Should throws error if it doesn\'t contain the repositoryId', function () {
       let result = spawn('node', ['./bin/nilegacy.js', 'maven', '--repoUrl', 'http://localhost:8081/repo/', '.']);
 
       let log = (result.stdout || result.stderr || '').toString();
 
-      assert(log.indexOf('he "--repositoryId" argument is required for maven repo type') > -1);
+      assert(log.indexOf('"--repositoryId" argument is required for maven repo type') > -1);
     });
+
+    it('If !== Maven: Should not accept --repositoryId, --generatePom, --groupId', function () {
+      let result = spawn('node', ['./bin/nilegacy.js', 'npm', '--repoUrl', 'http://localhost:8081/repo/', '--generatePom', 'true','.']);
+
+      let log = (result.stdout || result.stderr || '').toString();
+
+      assert(log.indexOf('"--repositoryId", "--generatePom" and "--groupId" options are restricted to the maven repository') > -1);
+    });
+
+    it('For NuGet: throws error if it doesn\'t contain the apiKey', function () {
+      let result = spawn('node', ['./bin/nilegacy.js', 'nuget', '--repoUrl', 'http://localhost:8081/repo/', '.']);
+
+      let log = (result.stdout || result.stderr || '').toString();
+
+      assert(log.indexOf('the "--apiKey" argument is required for nuget repo type') > -1);
+    });
+
+    it('If !== NuGet: Should not accept --apiKey', function () {
+      let result = spawn('node', ['./bin/nilegacy.js', 'npm', '--apiKey', '<generated_key>', '--repoUrl', 'http://localhost:8081/repo/', '.']);
+
+      let log = (result.stdout || result.stderr || '').toString();
+
+      assert(log.indexOf('the "--apiKey" argument is restricted to the nuget repository') > -1);
+    });
+  });
+
+  describe('Searching Files', function () {
+
   });
 
 });
