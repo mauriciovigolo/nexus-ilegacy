@@ -3,6 +3,7 @@
 const assert = require('assert');
 const spawn = require('child_process').spawnSync;
 
+
 describe('nilegacy', function () {
   describe('Args Initialization', function () {
     it('No args: Should show usage options', function () {
@@ -101,7 +102,7 @@ describe('nilegacy', function () {
       assert(log.indexOf('the "--repoUrl" option is required') > -1);
     });
 
-    it('Should return error if the directory containing the libraries doesn\'t exists', function() {
+    it('Should return error if the directory containing the libraries doesn\'t exists', function () {
       let result = spawn('node', ['./bin/nilegacy.js', 'maven', '--repoUrl', 'http://localhost:8081/repo/', '/somedir/repo']);
 
       let log = (result.stdout || result.stderr || '').toString();
@@ -118,7 +119,7 @@ describe('nilegacy', function () {
     });
 
     it('If !== Maven: Should not accept --repositoryId, --generatePom, --groupId', function () {
-      let result = spawn('node', ['./bin/nilegacy.js', 'npm', '--repoUrl', 'http://localhost:8081/repo/', '--generatePom', 'true','.']);
+      let result = spawn('node', ['./bin/nilegacy.js', 'npm', '--repoUrl', 'http://localhost:8081/repo/', '--generatePom', 'true', '.']);
 
       let log = (result.stdout || result.stderr || '').toString();
 
@@ -142,8 +143,16 @@ describe('nilegacy', function () {
     });
   });
 
-  describe('Searching Files', function () {
 
+  describe('Searching Files', function () {
+    it('No files found, should exit', function () {
+      let result = spawn('node', ['./bin/nilegacy.js', 'npm', '--repoUrl', 'http://localhost:8081/repo/', '/tmp/']);
+
+      let log = (result.stdout || result.stderr || '').toString();
+      console.log(log);
+
+      assert(true);
+    });
   });
 
 });
