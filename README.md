@@ -1,5 +1,5 @@
 ## nexus-ilegacy
-Tool to import legacy libraries to Nexus OSS
+Tool to recursively import maven, npm and nuget libraries to Nexus OSS.
 
 ---
 
@@ -14,11 +14,9 @@ Tool to import legacy libraries to Nexus OSS
 
 
 ## About
-The purpose of this CLI is to import Maven, NPM or NuGet artifacts to the Nexus OSS. It all began when we started to migrate from the Artifactory repo to the Nexus OSS repo at work. At that moment I didn't find a tool or functionality at Nexus to get the job done. So to avoid repetitive work I decided to write a simple cli that calls mvn, npm and nuget behind, taking a directory as starting point, to recursively search for artifacts to deploy to the Nexus OSS 3x.
+The purpose of this CLI is to import Maven, NPM or NuGet artifacts recursively to the Nexus OSS. It all began when we started to migrate from the Artifactory repo to the Nexus OSS repo at work. At that moment I didn't find a tool or functionality at Nexus to get the job done. So to avoid repetitive work I decided to write a simple cli that calls mvn, npm and nuget behind, taking a directory as starting point, to **recursively** search for artifacts to deploy to the Nexus OSS 3x.
 
 During the execution is possible to check the total of import success and errors and in the end of the processing the CLI will generate a log file, so it will be better to evaluate the results.
-
-This beta release works with maven, however soon the npm and nuget will also be available.
 
 
 ## Prerequisites
@@ -125,17 +123,32 @@ maven_backup
 
 **IMPORTANT**: Note the --repositoryId. This id must exists in the servers config at the settings.xml.
 
-
-#### Importing NuGet Artifacts
-TODO: To be done
-
-
 #### Importing NPM Artifacts
-TODO: To be done
+This CLI will search recursively looking for package.json and *.tgz files, except those inside node_modules. 
+
+First of all  you have to setup the user that will publish the package.
+
+```bash
+npm adduser --registry <repo_url>
+```
+
+Example:
+```bash
+npm adduser --registry http://localhost:8081/repository/npm-internal
+```
+
+Then run the nilegacy import command :
+
+```bash
+nilegacy npm --repoUrl http://localhost:8081/repository/npm-internal ./directory-with-npm-libs
+```
+
 
 LIMITATIONS:
 NPM Issue (#10117)[https://github.com/npm/npm/issues/10117]
 
+#### Importing NuGet Artifacts
+TODO: To be done
 
 ## History
 For the list of all changes see the [history log](CHANGELOG.md).
