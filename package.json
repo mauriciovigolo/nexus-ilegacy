@@ -28,7 +28,10 @@
     "libraries",
     "m2"
   ],
-  "author": "Mauricio Vigolo <mauriciovigolo@gmail.com>",
+  "author": {
+    "name": "Mauricio Gemelli Vigolo",
+    "email": "@mauriciovigolo"
+  },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/mauriciovigolo/nexus-ilegacy/issues"
